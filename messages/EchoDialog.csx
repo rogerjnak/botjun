@@ -5,6 +5,7 @@ using Microsoft.Bot.Connector;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Configuration;
 
 // For more information about this template visit http://aka.ms/azurebots-csharp-basic
 [Serializable]
@@ -44,8 +45,9 @@ public class EchoDialog : IDialog<object>
         }
         else
         {
-            string res = await GetBotAsync("http://botjunnode.azurewebsites.net/api/test");
-            await context.PostAsync($"{this.count++}: You22 said {message.Text} {res}");
+            //string res = await GetBotAsync("http://botjunnode.azurewebsites.net/api/test");
+            var appId = ConfigurationManager.AppSettings["MicrosoftAppId"];
+            await context.PostAsync($"{this.count++}: You22 said {message.Text} APPID: {appId}");
             context.Wait(MessageReceivedAsync);
         }
     }
