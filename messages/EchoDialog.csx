@@ -47,7 +47,9 @@ public class EchoDialog : IDialog<object>
         {
             //string res = await GetBotAsync("http://botjunnode.azurewebsites.net/api/test");
             var appId = ConfigurationManager.AppSettings["MicrosoftAppId"];
-            await context.PostAsync($"{this.count++}: You22 said {message.Text} APPID: {appId}");
+            var appPass = ConfigurationManager.AppSettings["MicrosoftAppPassword"];
+            
+            await context.PostAsync($"{this.count++}: You said {message.Text} APPID: {appId} APPPASS: {appPass}");
             context.Wait(MessageReceivedAsync);
         }
     }
